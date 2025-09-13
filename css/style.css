@@ -25,9 +25,9 @@ body{
 
 #container{
     background-color: var(--lightbg);
-    width: 50vw;
+    width: 40vw;
     min-width: 320px;
-    height: 50vw;
+    height: 40vw;
     min-height: 320px;
     border: var(--white) 1rem solid;
     display: flex;
