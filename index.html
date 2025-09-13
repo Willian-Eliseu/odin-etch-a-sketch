@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-a-Sketch</title>
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script>
+</head>
+<body>
+    <h1>Etch-a-Sketch</h1>
+    <div class="board-header">
+        <div>
+            <h4>Grid Size:</h4>
+            <p id="grid-size"></p>
+        </div>
+        <div>
+            <button onclick="resetBoard()">Reset Board</button>
+        </div>
+        <div>
+            <button onclick="changeGridSize()">Change Grid Size</button>
+        </div>
+    </div>
+    <div id="container"></div>
+</body>
+</html>
