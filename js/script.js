@@ -14,7 +14,8 @@ const colors = [
 ];
 const count = {
     value: 0,
-    colored: true
+    colored: true,
+    trace: true
 };
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -26,6 +27,7 @@ function changeColor() {
 }
 
 function createItems(size) {
+    container.innerHTML = '';
     for (let i = 0; i < size; i++) {
 
         const row = document.createElement('div');
@@ -40,17 +42,33 @@ function createItems(size) {
             item.classList.add('item');
             row.appendChild(item);
 
-            item.addEventListener('mouseover', () => {
-                if (count.colored) {
-                    item.style.backgroundColor = colors[count.value];
-                    count.value++;
-                    if (count.value === colors.length) {
-                        count.value = 0;
+            if (count.trace) {
+                item.addEventListener('mouseover', () => {
+                    if (count.colored) {
+                        item.style.backgroundColor = colors[count.value];
+                        count.value++;
+                        if (count.value === colors.length) {
+                            count.value = 0;
+                        }
+                    } else {
+                        item.classList.add('blacked');
                     }
-                } else {
-                    item.classList.add('blacked');
-                }
-            });
+                });
+            } else {
+                item.addEventListener('click', () => {
+                    if (count.colored) {
+                        item.style.backgroundColor = colors[count.value];
+                        count.value++;
+                        if (count.value === colors.length) {
+                            count.value = 0;
+                        }
+                    } else {
+                        item.classList.add('blacked');
+                    }
+                });
+            }
+
+
         }
     }
 
@@ -65,7 +83,7 @@ function resetBoard() {
 function changeGridSize() {
     const newGridSize = prompt('Enter the new grid size. Minimum 16 and maximum 100.');
     if (newGridSize >= 16 && newGridSize <= 100) {
-        container.innerHTML = '';
+        
         createItems(newGridSize);
     } else if (newGridSize == null) {
         resetBoard();
@@ -73,6 +91,11 @@ function changeGridSize() {
         alert('Invalid Size');
         changeGridSize();
     }
+}
+
+function changeTraceMethod() {
+    count.trace = !count.trace;
+    createItems(gridSize[0]);
 }
 
 function writeBoardHeader(size) {
